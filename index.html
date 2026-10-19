@@ -1,851 +1,373 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praveen P. - Cybersecurity Professional</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Vexispace | IT Support & Cybersecurity Solutions</title>
+    <!-- Link to your favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0f172a',
-                        secondary: '#1e40af',
-                        accent: '#3b82f6',
-                        light: '#f8fafc',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --bg-color: #0b0f19;
+            --surface-color: #111827;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
         }
-        
-        .bg-cyber {
-            background-color: #0f172a;
-            background-image: 
-                radial-gradient(at 47% 33%, rgba(59, 130, 246, 0.15) 0, transparent 59%), 
-                radial-gradient(at 82% 65%, rgba(29, 78, 216, 0.12) 0, transparent 55%);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-        
-        .skill-bar {
-            height: 8px;
-            border-radius: 4px;
-            background-color: #1e40af;
-            position: relative;
-            overflow: hidden;
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
         }
-        
-        .skill-bar::after {
-            content: '';
-            position: absolute;
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: rgba(11, 15, 25, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shimmer 1.5s infinite;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        
-        .card {
+
+        .logo span {
+            background: linear-gradient(to right, var(--accent-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 10%;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 40%);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            border: none;
+            margin-left: 1rem;
         }
         
-        .card:hover {
+        .btn-whatsapp:hover {
+            background: #1ebc59;
+            transform: translateY(-2px);
+        }
+
+        /* Section Global */
+        section {
+            padding: 5rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--surface-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+            border-color: var(--accent-blue);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* About / Experience */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            background-color: var(--surface-color);
+            padding: 3rem;
+            border-radius: 12px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
         }
         
-        .nav-link {
-            position: relative;
+        .about-text h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
         }
         
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #3b82f6;
-            transition: width 0.3s ease;
+        .about-text ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .about-text li {
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
         }
         
-        .nav-link:hover::after {
-            width: 100%;
+        .about-text li i {
+            color: var(--accent-green);
+            margin-right: 10px;
         }
-        
-        .active::after {
-            width: 100%;
+
+        /* Footer & Contact */
+        footer {
+            background-color: var(--surface-color);
+            padding: 4rem 10%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
         }
-        
-        .section-fade {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
         }
-        
-        .section-fade.visible {
-            opacity: 1;
-            transform: translateY(0);
+
+        .contact-box h2 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            section { padding: 4rem 5%; }
+            .btn-whatsapp { margin-left: 0; margin-top: 1rem; display: block; width: max-content;}
         }
     </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-800">
-    <!-- Header/Navigation -->
-    <header class="bg-white shadow-md fixed w-full z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <span class="text-2xl font-bold text-secondary">
-                    <span class="text-accent">{</span>P<span class="text-accent">}</span>
-                </span>
-                <span class="ml-2 text-lg font-semibold hidden sm:block">Praveen P.</span>
-            </div>
-            
-            <div class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link active text-gray-800 hover:text-accent">Home</a>
-                <a href="#about" class="nav-link text-gray-800 hover:text-accent">About</a>
-                <a href="#skills" class="nav-link text-gray-800 hover:text-accent">Skills</a>
-                <a href="#experience" class="nav-link text-gray-800 hover:text-accent">Experience</a>
-                <a href="#education" class="nav-link text-gray-800 hover:text-accent">Education</a>
-                <a href="#contact" class="nav-link text-gray-800 hover:text-accent">Contact</a>
-            </div>
-            
-            <div class="md:hidden">
-                <button id="menu-toggle" class="focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
-            <div class="container mx-auto px-6 py-3 flex flex-col space-y-4">
-                <a href="#home" class="text-gray-800 hover:text-accent py-2">Home</a>
-                <a href="#about" class="text-gray-800 hover:text-accent py-2">About</a>
-                <a href="#skills" class="text-gray-800 hover:text-accent py-2">Skills</a>
-                <a href="#experience" class="text-gray-800 hover:text-accent py-2">Experience</a>
-                <a href="#education" class="text-gray-800 hover:text-accent py-2">Education</a>
-                <a href="#contact" class="text-gray-800 hover:text-accent py-2">Contact</a>
-            </div>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="logo.svg" alt="Vexispace Logo" width="30" height="30" onerror="this.style.display='none'">
+            VEXI<span>SPACE</span>
         </div>
-    </header>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-cyber min-h-screen flex items-center pt-16">
-        <div class="container mx-auto px-6 py-20 md:py-32">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                        Praveen P.
-                        <span class="block text-accent mt-2">Cybersecurity Professional</span>
-                    </h1>
-                    <p class="text-gray-300 mt-6 text-lg md:text-xl max-w-lg">
-                        Passionate about network security, penetration testing, and IT infrastructure protection. 
-                        Committed to safeguarding organizational assets in today's evolving threat landscape.
-                    </p>
-                    <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="#contact" class="bg-accent hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center">
-                            <i class="fas fa-envelope mr-2"></i> Contact Me
-                        </a>
-                        <a href="#about" class="bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-white font-medium py-3 px-6 rounded-lg transition duration-300 flex items-center">
-                            <i class="fas fa-user mr-2"></i> About Me
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg">
-                            <svg class="w-40 h-40 text-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-                            </svg>
-                        </div>
-                        <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                                <span class="text-sm font-medium">Available for opportunities</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section class="hero">
+        <h1>Secure. Connect.<br><span>Empower.</span></h1>
+        <p>Enterprise-grade IT technical support, network architecture, and physical security infrastructure for businesses in Dubai and the UAE.</p>
+        <div>
+            <a href="#contact" class="btn btn-primary"><i class="fas fa-envelope"></i> Request an Assessment</a>
+            <a href="https://wa.me/971504188226" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title">Core Services</h2>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <i class="fas fa-server"></i>
+                <h3>IT Technical Support</h3>
+                <p>Comprehensive L1-L3 endpoint support for Windows, Linux, and macOS environments. Server management, patch implementation, and disaster recovery to ensure uninterrupted business operations.</p>
             </div>
+
+            <div class="service-card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Network Analysis & Architecture</h3>
+                <p>Deployment and management of enterprise networks using Fortinet Firewalls and Mikrotik Routers. WireGuard site-to-site VPNs, VLAN routing, and deep packet traffic analysis.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-shield-virus"></i>
+                <h3>Vulnerability Assessment</h3>
+                <p>Proactive threat hunting and network hardening. Deployment of SOC tools including Wazuh (XDR/EDR) and Splunk for continuous monitoring, log analysis, and incident detection.</p>
+            </div>
+
+            <div class="service-card">
+                <i class="fas fa-video"></i>
+                <h3>Physical Security & IoT</h3>
+                <p>Installation and configuration of CCTV networks, NVR storage systems, and advanced door access control mechanisms tailored for corporate and commercial spaces.</p>
+            </div>
+
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white section-fade">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800">About Me</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-inner">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white">
-                                <i class="fas fa-shield-alt text-xl"></i>
-                            </div>
-                            <h3 class="ml-4 text-xl font-semibold">Profile Summary</h3>
-                        </div>
-                        <p class="text-gray-700 leading-relaxed">
-                            Passionate cybersecurity professional with hands-on experience in penetration testing, network security, and IT support. Adept at translating business requirements into technical solutions and committed to safeguarding organizational assets. Seeking to leverage expertise and innovative thinking in a dynamic, tech-driven environment.
-                        </p>
-                        
-                        <div class="mt-8">
-                            <h4 class="font-semibold text-lg mb-3 flex items-center">
-                                <i class="fas fa-map-marker-alt text-accent mr-2"></i> Location
-                            </h4>
-                            <p class="text-gray-700">Al Jurf 3, Ajman, UAE</p>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <h4 class="font-semibold text-lg mb-3 flex items-center">
-                                <i class="fas fa-language text-accent mr-2"></i> Languages
-                            </h4>
-                            <p class="text-gray-700">English (Proficient), Tamil (Proficient)</p>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <h4 class="font-semibold text-lg mb-3 flex items-center">
-                                <i class="fas fa-heart text-accent mr-2"></i> Hobbies
-                            </h4>
-                            <p class="text-gray-700">Learning, Problem-solving challenges, Staying updated with technology trends</p>
-                        </div>
-                    </div>
-                </div>
+    <section id="about">
+        <h2 class="section-title">Professional Expertise</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Praveen Pragalathan</h3>
+                <p>Based in Al Barsha, Dubai, I am an ISC2 Certified Cybersecurity Professional and Network Administrator with a proven track record of reducing security incidents and optimizing enterprise networks.</p>
                 
-                <div class="md:w-1/2 md:pl-10">
-                    <h3 class="text-2xl font-semibold mb-6">Professional Interests</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                            <div class="text-blue-500 mb-4">
-                                <i class="fas fa-shield-virus text-3xl"></i>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">Cybersecurity</h4>
-                            <p class="text-gray-600">Passionate about protecting digital assets and infrastructure from threats.</p>
-                        </div>
-                        
-                        <div class="card bg-white p-6 rounded-lg shadow-md border-l-4 border-indigo-500">
-                            <div class="text-indigo-500 mb-4">
-                                <i class="fas fa-network-wired text-3xl"></i>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">Network Security</h4>
-                            <p class="text-gray-600">Specialized in securing network infrastructure against unauthorized access.</p>
-                        </div>
-                        
-                        <div class="card bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
-                            <div class="text-purple-500 mb-4">
-                                <i class="fas fa-user-secret text-3xl"></i>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">Ethical Hacking</h4>
-                            <p class="text-gray-600">Finding vulnerabilities before malicious actors can exploit them.</p>
-                        </div>
-                        
-                        <div class="card bg-white p-6 rounded-lg shadow-md border-l-4 border-teal-500">
-                            <div class="text-teal-500 mb-4">
-                                <i class="fas fa-server text-3xl"></i>
-                            </div>
-                            <h4 class="text-xl font-semibold mb-2">IT Administration</h4>
-                            <p class="text-gray-600">Managing and optimizing IT infrastructure for performance and security.</p>
-                        </div>
-                    </div>
-                </div>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> ISC2 Certified in Cybersecurity (CC)</li>
+                    <li><i class="fas fa-check-circle"></i> Top 2% Global Rank on TryHackMe</li>
+                    <li><i class="fas fa-check-circle"></i> Google Cybersecurity Professional Certificate</li>
+                    <li><i class="fas fa-check-circle"></i> B.Tech in Information Technology</li>
+                </ul>
+            </div>
+            <div class="about-text">
+                <h3>Technical Arsenal</h3>
+                <ul>
+                    <li><i class="fas fa-shield-alt"></i> <strong>Security:</strong> Wazuh EDR, Splunk, Snort IDS, NIST/GDPR frameworks</li>
+                    <li><i class="fas fa-wifi"></i> <strong>Networking:</strong> FortiGate, MikroTik, WireGuard VPN, Wireshark</li>
+                    <li><i class="fas fa-code"></i> <strong>Scripting:</strong> Python (Pentesting & Scanners), JavaScript, SQL</li>
+                    <li><i class="fas fa-laptop-code"></i> <strong>Infrastructure:</strong> Active Directory, File Servers, Linux/Windows Hardening</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50 section-fade">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800">Skills & Expertise</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6">Technical Skills</h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Network Security</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Penetration Testing</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">IT Support</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Microsoft Office Suite</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Data Management</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="skill-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Contact Section / Footer -->
+    <section id="contact" style="padding-bottom: 0;">
+        <footer>
+            <div class="contact-box">
+                <h2>Ready to secure your infrastructure?</h2>
+                <p>Whether you need a complete CCTV installation, a network security audit, or managed IT support for your company in the UAE, reach out today to discuss your project.</p>
                 
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6">Soft Skills</h3>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="bg-white p-5 rounded-lg shadow-md flex items-start">
-                            <div class="bg-blue-100 p-3 rounded-full text-blue-600">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-semibold">Communication</h4>
-                                <p class="text-sm text-gray-600 mt-1">Effective verbal and written communication skills</p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white p-5 rounded-lg shadow-md flex items-start">
-                            <div class="bg-green-100 p-3 rounded-full text-green-600">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-semibold">Team Collaboration</h4>
-                                <p class="text-sm text-gray-600 mt-1">Working effectively in diverse teams</p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white p-5 rounded-lg shadow-md flex items-start">
-                            <div class="bg-purple-100 p-3 rounded-full text-purple-600">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-semibold">Problem Solving</h4>
-                                <p class="text-sm text-gray-600 mt-1">Analytical approach to complex challenges</p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white p-5 rounded-lg shadow-md flex items-start">
-                            <div class="bg-yellow-100 p-3 rounded-full text-yellow-600">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="ml-4">
-                                <h4 class="font-semibold">Time Management</h4>
-                                <p class="text-sm text-gray-600 mt-1">Efficient prioritization of tasks</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-10">
-                        <h3 class="text-2xl font-semibold mb-6">Certifications</h3>
-                        <div class="bg-white p-6 rounded-lg shadow-md">
-                            <ul class="space-y-4">
-                                <li class="flex items-center">
-                                    <i class="fas fa-certificate text-accent mr-3"></i>
-                                    <span>Junior Penetration Tester (TryHackMe)</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-certificate text-accent mr-3"></i>
-                                    <span>Ethical Hacking (GUVI)</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-certificate text-accent mr-3"></i>
-                                    <span>HTML, CSS, JavaScript, MySQL (Udemy)</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-certificate text-accent mr-3"></i>
-                                    <span>CompTIA A+, Security+, Network+ (Udemy)</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-certificate text-accent mr-3"></i>
-                                    <span>Network Security (CodeRed)</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i class="fas fa-certificate text-accent mr-3"></i>
-                                    <span>OSINT Analyse Windows Host (CodeRed)</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:praveenprawi001@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> praveenprawi001@gmail.com</a>
+                    <a href="https://wa.me/971504188226" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> +971 50 418 8226</a>
                 </div>
             </div>
-        </div>
+            <div class="footer-bottom">
+                &copy; <script>document.write(new Date().getFullYear())</script> Vexispace. Designed and engineered in Dubai, UAE.
+            </div>
+        </footer>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white section-fade">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800">Professional Experience</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="relative">
-                    <!-- Timeline line -->
-                    <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-blue-200"></div>
-                    
-                    <!-- Experience item 1 (Current) -->
-                    <div class="relative flex flex-col md:flex-row items-center mb-16">
-                        <div class="md:w-1/2 md:pr-8 md:text-right mb-6 md:mb-0">
-                            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-                                <div class="inline-block px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-semibold mb-2">CURRENT</div>
-                                <h3 class="text-xl font-semibold">IT Support and Network Security</h3>
-                                <p class="text-accent font-medium">Zone Multiverse LLC</p>
-                                <p class="text-gray-600 mt-1">Dubai, UAE | June 2024 - Present</p>
-                            </div>
-                        </div>
-                        
-                        <div class="absolute left-0 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
-                            <div class="w-8 h-8 rounded-full bg-green-500 border-4 border-white"></div>
-                        </div>
-                        
-                        <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white p-6 rounded-lg shadow-md">
-                                <h4 class="font-semibold text-lg mb-3">IT Support & Systems Administration</h4>
-                                <ul class="space-y-3 text-gray-700">
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>Provided comprehensive L1-L3 IT support, resolving a wide spectrum of technical issues and ensuring smooth business operations through expert troubleshooting.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>Managed and secured Windows operating systems, encompassing administration, security hardening, and user support.</span>
-                                    </li>
-                                </ul>
-                                
-                                <h4 class="font-semibold text-lg mt-5 mb-3">Network Security & Operations</h4>
-                                <ul class="space-y-3 text-gray-700">
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>Led network security analysis, identifying vulnerabilities and implementing robust measures to protect company assets and data.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>Expertly configured and managed Fortinet firewalls and WireGuard VPNs, ensuring optimal network security, policy enforcement, and secure connectivity.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
-                                        <span>Applied deep knowledge of network security principles to design, maintain, and secure enterprise networks, including active traffic analysis and incident response.</span>
-                                    </li>
-                                </ul>
-                                
-                                <div class="mt-5 bg-blue-50 p-4 rounded-lg border border-blue-100">
-                                    <h4 class="font-semibold text-lg mb-3 text-blue-800">Key Achievements</h4>
-                                    <ul class="space-y-3 text-gray-700">
-                                        <li class="flex items-start">
-                                            <i class="fas fa-trophy text-blue-500 mt-1 mr-2"></i>
-                                            <span>Reduced security incidents by 10% through proactive threat hunting, vulnerability management, and enhanced security control implementation.</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-trophy text-blue-500 mt-1 mr-2"></i>
-                                            <span>Significantly improved network uptime by optimizing network configurations and proactively addressing potential points of failure.</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-trophy text-blue-500 mt-1 mr-2"></i>
-                                            <span>Successfully completed challenging network security certifications on TryHackMe and HackTheBox, demonstrating practical, hands-on cybersecurity skills and a commitment to continuous learning.</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-trophy text-blue-500 mt-1 mr-2"></i>
-                                            <span>Consistently applied hands-on experience across all facets of network security and IT support, ensuring practical and effective solutions.</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Experience item 2 (Previous) -->
-                    <div class="relative flex flex-col md:flex-row items-center mb-8">
-                        <div class="md:w-1/2 md:pr-8 md:text-right mb-6 md:mb-0">
-                            <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-accent">
-                                <h3 class="text-xl font-semibold">IT Support and Network Engineer</h3>
-                                <p class="text-accent font-medium">Mocero Health Solutions</p>
-                                <p class="text-gray-600 mt-1">1 Year</p>
-                            </div>
-                        </div>
-                        
-                        <div class="absolute left-0 md:left-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
-                            <div class="w-8 h-8 rounded-full bg-accent border-4 border-white"></div>
-                        </div>
-                        
-                        <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white p-6 rounded-lg shadow-md">
-                                <ul class="space-y-3 text-gray-700">
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Provided first and second-level technical support to end-users, resolving hardware, software, and network issues.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Installed, configured, and maintained operating systems and software patches.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Set up and managed user accounts, permissions, and passwords.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Assisted in the maintenance of network infrastructure, including routers, switches, and firewalls.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Monitored network performance, ensuring optimal uptime and data integrity.</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                        <span>Performed routine backups and disaster recovery procedures.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-20 bg-gray-50 section-fade">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800">Education</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Bachelor's Degree -->
-                    <div class="card bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="bg-primary p-4 text-white">
-                            <h3 class="text-xl font-semibold">Bachelor's Degree</h3>
-                            <p class="text-blue-200">2019 - 2023</p>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="font-semibold text-lg">B.Tech in Information Technology</h4>
-                            <p class="text-gray-600 mt-1">Hindusthan Institute of Technology, Coimbatore</p>
-                            <div class="mt-4 flex items-center">
-                                <i class="fas fa-graduation-cap text-accent mr-2"></i>
-                                <span class="font-medium">CGPA: 7.97</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Higher Secondary -->
-                    <div class="card bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="bg-primary p-4 text-white">
-                            <h3 class="text-xl font-semibold">Higher Secondary</h3>
-                            <p class="text-blue-200">2018 - 2019</p>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="font-semibold text-lg">HSC</h4>
-                            <p class="text-gray-600 mt-1">Sri Jegadheeswara Hr Sec School, Manamelkudi, Tamilnadu</p>
-                            <div class="mt-4 flex items-center">
-                                <i class="fas fa-award text-accent mr-2"></i>
-                                <span class="font-medium">Percentage: 61%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Secondary School -->
-                    <div class="card bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="bg-primary p-4 text-white">
-                            <h3 class="text-xl font-semibold">Secondary School</h3>
-                            <p class="text-blue-200">2016 - 2017</p>
-                        </div>
-                        <div class="p-6">
-                            <h4 class="font-semibold text-lg">SSLC</h4>
-                            <p class="text-gray-600 mt-1">School Education</p>
-                            <div class="mt-4 flex items-center">
-                                <i class="fas fa-award text-accent mr-2"></i>
-                                <span class="font-medium">Percentage: 85%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white section-fade">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800">Get In Touch</h2>
-                <div class="w-24 h-1 bg-accent mx-auto mt-4 rounded-full"></div>
-                <p class="text-gray-600 mt-4 max-w-lg mx-auto">Feel free to reach out for opportunities, collaborations, or just to say hello!</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="bg-gray-50 p-8 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="bg-accent rounded-full p-3 text-white">
-                                    <i class="fas fa-phone"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-gray-800">Phone</h4>
-                                    <p class="text-gray-600 mt-1">0504188226</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-accent rounded-full p-3 text-white">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-gray-800">Email</h4>
-                                    <p class="text-gray-600 mt-1">praveenprawi001@gmail.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-accent rounded-full p-3 text-white">
-                                    <i class="fab fa-linkedin"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-gray-800">LinkedIn</h4>
-                                    <a href="https://linkedin.com/in/praveen-p-680428228" target="_blank" class="text-accent hover:underline mt-1 block">linkedin.com/in/praveen-p-680428228</a>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-accent rounded-full p-3 text-white">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h4 class="font-medium text-gray-800">Location</h4>
-                                    <p class="text-gray-600 mt-1">Al Jurf 3, Ajman, UAE</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 md:pl-10">
-                    <form id="contact-form" class="bg-white p-8 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-semibold mb-6">Send Me a Message</h3>
-                        
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Your name">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Your email">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Subject">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Your message"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full bg-accent hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
-                            Send Message
-                        </button>
-                        
-                        <div id="form-message" class="mt-4 text-center hidden"></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center">
-                        <span class="text-2xl font-bold">
-                            <span class="text-accent">{</span>P<span class="text-accent">}</span>
-                        </span>
-                        <span class="ml-2 text-lg font-semibold">Praveen P.</span>
-                    </div>
-                    <p class="text-blue-200 mt-2">Cybersecurity Professional</p>
-                </div>
-                
-                <div class="flex space-x-4">
-                    <a href="mailto:praveenprawi001@gmail.com" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 rounded-full transition duration-300">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/praveen-p-680428228" target="_blank" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 rounded-full transition duration-300">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="tel:0504188226" class="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 rounded-full transition duration-300">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="border-t border-blue-800 mt-8 pt-8 text-center text-blue-200">
-                <p>&copy; 2023 Praveen P. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- Smooth Scrolling Script -->
     <script>
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        });
-        
-        // Active navigation link highlighting
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Section fade-in animation
-        const fadeElements = document.querySelectorAll('.section-fade');
-        
-        const fadeInObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(element => {
-            fadeInObserver.observe(element);
-        });
-        
-        // Contact form handling
-        const contactForm = document.getElementById('contact-form');
-        const formMessage = document.getElementById('form-message');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                formMessage.textContent = 'Please fill in all required fields.';
-                formMessage.classList.remove('hidden', 'text-green-500');
-                formMessage.classList.add('text-red-500');
-                return;
-            }
-            
-            // This is a demo form - in a real implementation, you would send data to a server
-            // For demo purposes, we'll just show a success message
-            formMessage.textContent = 'Message sent successfully! (Demo)';
-            formMessage.classList.remove('hidden', 'text-red-500');
-            formMessage.classList.add('text-green-500');
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.classList.add('hidden');
-            }, 5000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9432b2d3f64bcdd9',t:'MTc0NzgxNjA4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
